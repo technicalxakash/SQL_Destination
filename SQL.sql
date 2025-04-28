@@ -192,3 +192,225 @@ rename column phone to emp_phone,
 rename column email to emp_email;
 
 describe employee;
+
+-- Q:7 WAQ to change the varchar size of all the column to 300
+
+
+alter table employee
+modify column emp_name varchar(300) not null,
+modify column emp_company varchar(300) not null,
+modify column emp_designation varchar(300) not null,
+modify column emp_salary varchar(300) not null,
+modify column emp_exp varchar(300) not null,
+modify column emp_add_line varchar(300) not null,
+modify column emp_city varchar(300) not null,
+modify column emp_state varchar(300) not null,
+modify column emp_country varchar(300) not null,
+modify column emp_pincode int not null,
+modify column emp_phone varchar(300) not null,
+modify column emp_email varchar(300) not null;
+
+-- Q8 :  WAQ to change the datatype of the column pincode to varchar
+alter table employee
+modify column emp_pincode varchar(300) not null;
+
+-- Q10 : WAQ to make the phone number and email as a unique
+alter table employee
+modify emp_phone bigint not null unique,
+modify emp_email varchar(300) not null unique;
+
+-- Q11 : WAQ add a default value for column country as'india' and make the column as nullable
+alter table employee
+modify column emp_country varchar(300) null default 'India';
+
+
+-- Q12 : WAQ to remove the column address _line form the employee table
+alter table employee
+drop column emp_add_line;
+
+alter table employee
+add column emp_add_line varchar(300) not null after emp_email;
+
+describe employee;
+
+-- Q13  WAQ to insert the into yhe employee table
+-- Apporoach 1
+insert into employee values(1, "Akash","1990-10-26","TCS","senior maneger",125000,13,"bengaluru","kar","usa",56012,2345678765,"akashtcs@gmail.com","#33 4th main");
+
+-- Approach 2
+insert into employee (emp_eid,emp_name,emp_dob,emp_company,emp_designation,emp_salary,emp_exp,emp_add_line,emp_city,emp_state,emp_country,emp_pincode,emp_phone,emp_email)
+values(2,"vimal","1993-11-25","infosys","manager",100000,10,"#22 5th main","mysore","kar","india",560058,1234323423,"vimalinfosysQgmail.com");
+
+insert into employee (emp_add_line,emp_city,emp_state,emp_country,emp_pincode,emp_phone,emp_email,
+emp_eid,emp_name,emp_dob,emp_company,emp_designation,emp_salary,emp_exp)
+values("#43 10th main","bengaluru","kar","india",560091,9878987678,"sarantcs@gmail.com",3,"saran","1991-12-18","TCS"," Ast manager",200000,5);
+
+select * from employee; 
+insert into employee (emp_add_line,emp_city,emp_state,emp_country,emp_pincode,emp_phone,emp_email,
+emp_eid,emp_name,emp_dob,emp_company,emp_designation,emp_salary,emp_exp)
+values("#46 19th main","mandya","kar","india",560009,9878967876,"kusumatcs@gmail.com",4,"kusuma","2003-12-18","TCS"," manager",90000,8);
+-- truncate table employee;
+select * from Employee;
+
+
+-- Q15 WAQ to view all the details of the employee with the id=1
+select * from employee where emp_eid=1; 
+
+-- Q16 WAQ to view all the details of the employee who  works for TCS
+select * from employee where emp_company="TCS";
+select * from employee where emp_company like "tcs";
+select * from employee where emp_company like "tcs";
+select * from employee where emp_company like "%cs";
+select * from employee where emp_company like "tc%";
+select * from employee where emp_company like "t%s";
+select * from employee where emp_company like "t_s";
+
+-- Q17  WAQ to print all the details of the employee who is not from tcs
+select * from employee where emp_company !="TCS";
+select * from employee where emp_company <> "TCS";
+select * from employee where emp_company not like "TCS";
+
+-- Q19 WAQ to print the name of all the employee from the employee table
+select emp_name from employee;
+
+-- Q20 WAQ to print id,name,dob,and company details of the employee from employee table
+select emp_eid,emp_name,emp_dob,emp_company from employee;
+
+-- Q21 WAQ to print the details of all the employee who are working with salary more than 100000
+select *  from employee where emp_salary>10000;
+
+-- Q22 WAQ to print the deatails of all the employee  who are working with salary less than 1000000
+select * from employee where emp_salary<100000;
+
+-- logicaloperator
+-- and
+-- or
+-- not
+-- Q24 WAQ to print the details of the all employee who have salary more than 100000 and are not working in tcs
+select * from employee where emp_salary>100000
+ and emp_company!= "tcs";
+ 
+ 
+ -- Q25 WAQ to print the details of all the employee who stays in either mumbai or mysuru
+ 
+ select * from employee where emp_city = 'mumbai' or emp_city = 'mysore';
+ select emp_city from employee;
+
+ -- Q26 WAQ to print the deatails of all the employee who do not stay in either mumbai or mysore
+ select * from employee where emp_city!="mumbai" and emp_city !="mysore";
+ 
+ 
+ --   means check conitions if one condition is check print another condition chek than it prints
+ select * from employee where emp_city in("mumbai","mysore");
+ 
+ 
+-- Q28 WAQ to print the details of all the employee whoes name ends with a vowel
+
+select * from employee 
+where emp_name like '%a' 
+or  emp_name like '%e' 
+or emp_name like '%i' 
+or emp_name like '%o' 
+or emp_name like '%u';
+
+--  WAQ to print the details of all the employee whoes name starts with a vowel
+
+select * from employee 
+where emp_name like 'a%' 
+or  emp_name like 'e%' 
+or emp_name like 'i%' 
+or emp_name like 'o%' 
+or emp_name like 'u%';
+
+-- Q29 :WAQ to print the details of all the employee who have the salary within the range of 50000 to 100000
+
+select * from employee where emp_salary > 50000 and emp_salary < 100000;
+
+select * from employee where emp_salary between 50000 and  100000; 
+
+
+-- Q30 :WAQ to print the details of all the employee who is born on or before 1st jan 1994
+select * from employee where emp_dob < '1994-01-1';
+
+-- Q31 : WAQ to print the details of all the employee who is born after 1st june 1990 1st jan 1997
+select * from employee where emp_dob between '1990-06-1' and  '1997-01-1'; 
+select * from employee where emp_dob > '1990-06-1' and  emp_dob <'1997-01-1'; 
+
+-- Q32 : WAQ to change the name of the employee from vimal to kamal
+set sql_safe_updates=false;
+update employee set emp_name='kamal' where emp_name='vimal';
+select * from employee;
+
+
+-- Q33:WAQ to update the salary of all the employee by 10%
+update employee set emp_salary =emp_salary+(emp_salary*0.1);
+
+
+-- Q34:WAQ to print the details of the employee who stays in main road
+
+ select* from employee where emp_add_line like '%main';
+
+
+
+-- Q35:WAQ to update the city of the employee from  mumbai to Navi Mumbai
+
+update employee set emp_city ='Navi Mumbai' where emp_city='mysore';
+
+-- Q36: WAQ to update the state from kar to karnataka
+
+update employee set emp_state='karnataka' where emp_state='kar';
+
+-- Q37 : WAQ to update the salary by decrementing by 27% for all the employee who is working in tcs
+update employee set emp_salary =emp_salary+(emp_salary*2.7) where emp_company='tcs';
+
+
+-- Q38 : WAQ to update the designation of all manegrs to senior manager and all senior managers to directors
+update employee set emp_designation='director'where emp_designation='senior maneger';
+update employee set emp_designation='senior maneger'where emp_designation='manager';
+
+
+-- Q39: WAQ to delete the employee with the id 3;
+delete  from employee where emp_eid=3;
+
+select * from employee;
+/* aggregrates
+  1 min(col) : finds the minimun values from the given column
+  2 max(col) : finds the maxmimun values from the given column
+  3 count(col) : count the total number of entries in the given column
+  4 avg(col) : finds the avg values from the given column
+  5 sum(col) : find the sum of all the values in the given column
+  */
+  
+  -- Q40 WAQ to fetch the highest salary from the employee table
+  select max(emp_salary) as max_salary from employee;
+  
+  -- Q41 WAQ to fetch the lowest salary from the employee table
+  select min(emp_salary) as min_salary from employee;
+  
+  -- Q42 WAQ to fetch the avg salary from the employee table
+  select avg(emp_salary) as avg_salary from employee;
+  
+  -- Q43 WAQ to count the total number of employee in the given table
+  select count(emp_salary) as count_salary from employee;
+  select * from employee;
+  
+  -- Q44 WAQ to find the sum of all the salaies from employe table
+  select sum(emp_salary) as sum_salary from employee;
+  
+  -- Q45 WAQ to find the details of the employee with highest salary
+  select * from employee
+  order by emp_salary desc
+  limit 1;
+  
+  select * from employee
+  where emp_salary=(select max(emp_salary) from employee);
+  
+  -- Q46 WAQ to find the details of the employee with lowest salary
+  select * from employee
+  where emp_salary=(select min(emp_salary) from employee);
+  
+  -- Q47 WAQ to find the details of the employee with second highest salary using subquries
+    select * from employee
+  order by emp_salary desc
+  limit 1 offset 1;
+  
