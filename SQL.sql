@@ -414,3 +414,147 @@ select * from employee;
   order by emp_salary desc
   limit 1 offset 1;
   
+  -- Q47 WAQ to find the details of the employee with second highest salary using subquries
+  select * from employee
+  order by emp_salary desc
+  limit 1 offset 1;
+  
+select max(emp_salary) as SecondHighestSalary from employee where emp_salary < (select max(emp_salary) from employee);
+
+ -- Q48 WAQ to find the details of the employee with second lowest salary using subquries
+ 
+ select min(emp_salary) as SecondLowestSalary from employee where emp_salary > (select min(emp_salary) from employee);
+ 
+ 
+ select * from employee;
+-- Q49 WAQ to insert minimum of 6 records into the employee table
+ INSERT INTO employee 
+VALUES (7, 'Ravi', '1988-05-14', 'Infosys', 'senior manager', 130000, 14, 'Hyderabad', 'TS', 'India', 500081, 9876543210, 'ravi@infosys.com', '#12 Tech Park');
+
+INSERT INTO employee 
+VALUES (8, 'Sneha', '1992-09-30', 'Wipro', 'senior manager', 127000, 12, 'Chennai', 'TN', 'India', 600018, 9876543222, 'sneha@wipro.com', '#7 Anna Salai');
+
+INSERT INTO employee 
+VALUES (9, 'Manoj', '1991-11-11', 'Accenture', 'senior manager', 135000, 15, 'Pune', 'MH', 'India', 411001, 9876543233, 'manoj@accenture.com', 'Flat 10, Kothrud');
+
+INSERT INTO employee 
+VALUES (10, 'Priya', '1989-04-25', 'IBM', 'senior manager', 140000, 13, 'Delhi', 'DL', 'India', 110001, 9876543244, 'priya@ibm.com', 'C-35 CP Area');
+
+INSERT INTO employee 
+VALUES (11, 'Karan', '1993-08-19', 'TCS', 'senior manager', 125000, 14, 'Mumbai', 'MH', 'India', 400001, 9876543255, 'karan@tcs.com', 'Bandra East');
+
+
+-- 50) WAQ to find details of the employee with 3rd highest salary
+select * from employee order by emp_salary desc limit 1 offset 2;
+
+
+-- Q51: WAQ to find the details of the employee with 3rd lowest salary;
+select*from employee order by emp_salary asc limit 1 offset 2;
+
+-- Q52: WAQ to find the details of the employee 6th highest salary
+select * from employee order by emp_salary desc limit 1 offset 5;
+
+
+-- Q53: WAQ to find the deatils of the employee with 8th lowest salary
+select*from employee order by emp_salary desc limit 1 offset 7;
+
+
+-- Q54: WAQ to find the details of the employee with 5th largets lowest salary
+
+select * from employee order by emp_salary desc limit 1 offset 4;
+
+-- Q55: WAQ to find details of the employee with 4th lowest salary
+select * from employee order by emp_salary asc limit 1 offset 3;
+
+-- Q56: WAQ to find details of the employee whose name is 5th in the attendance
+select * from employee order by emp_name asc limit 1 offset 4;
+
+
+-- Q57: WAQ to find the details of the employee who belongs to the city which is second as per the alphabatical order in the table;
+select * from employee order by emp_city asc limit 1 offset 1;
+
+-- 
+
+-- Q58 : write a query to view all details of employee
+USE `dest_db`;
+DROP procedure IF EXISTS `selectAll`;
+
+DELIMITER $$
+USE `dest_db`$$
+CREATE PROCEDURE `selectAll` ()
+BEGIN
+
+END$$
+
+DELIMITER ;
+
+call selectAll();
+
+-- Q 59)WAQ to create a procedure which accepts the eid as the parameter and prints the employee details 
+
+USE `dest_db`;
+DROP procedure IF EXISTS `selectByID`;
+
+USE `dest_db`;
+DROP procedure IF EXISTS `dest_db`.`selectByID`;
+;
+
+DELIMITER $$
+USE `dest_db`$$
+CREATE DEFINER=`root`@`localhost` PROCEDURE `selectByID`(id int)
+BEGIN
+select * from employee where emp_eid=id;
+END$$
+
+DELIMITER ;
+;
+
+-- 60 : WAQ to create a procedure which accepts the salary as the parameter and prints the employee etails who has the salary more than specified
+
+USE `dest_db`;
+DROP procedure IF EXISTS `emp_salary`;
+
+DELIMITER $$
+USE `dest_db`$$
+CREATE PROCEDURE `emp_salary` (salary float)
+BEGIN
+select * from employee where emp_salary > salary;
+END$$
+
+DELIMITER ;
+call emp_salary(150000);
+
+-- Q61 : WAQ to create a procedure which accepts the city as the parameter and prints the employee details belongs to that city;
+
+
+USE `dest_db`;
+DROP procedure IF EXISTS `emp_city`;
+
+DELIMITER $$
+USE `dest_db`$$
+CREATE PROCEDURE `emp_city` (city varchar(100))
+BEGIN
+select * from employee where emp_city=city;
+END$$
+
+DELIMITER ;
+
+call emp_city('Delhi');
+
+-- Q62 : WAQ to create a procedure which accepts the salary as the parameter along with the company name and prints the employee details who has the salary more than specified 
+-- salary and works in specified company;
+USE `dest_db`;
+DROP procedure IF EXISTS `salary_comapny`;
+
+DELIMITER $$
+USE `dest_db`$$
+CREATE PROCEDURE `salary_comapny` (salary float, company varchar(100))
+BEGIN
+select * from employee where emp_salary=salary and emp_company=company;
+END$$
+
+DELIMITER ;
+
+call salary_comapny(133100,'infosys');
+
+-- Q63 : WAQ to update the salary of the employee by specified amount for the employee who is from specified company
