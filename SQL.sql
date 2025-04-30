@@ -558,3 +558,105 @@ DELIMITER ;
 call salary_comapny(133100,'infosys');
 
 -- Q63 : WAQ to update the salary of the employee by specified amount for the employee who is from specified company
+
+
+-- Q64 :waq to convert the given character into its respective ascii value
+select ascii('a');
+select ascii('A');
+
+-- Q65 :waq to convert the names of employee into upper
+select upper(emp_name) from employee;
+
+-- Q66 :waq to convert the names of employee into lower
+select lower(emp_name) from employee;
+
+-- Q67 :waq to to count the total noof characters in employee name
+select length(emp_name) from employee;
+
+-- Q68:waq to print the name of the employee along with the reverse of the name
+select emp_name , reverse(emp_name) from employee;
+
+-- Q69:waq to check if the names of empoyee are palindrome or not
+set sql_safe_updates=false;
+update employee set emp_name='Markram' where emp_name='Akash';
+select emp_name,
+case 
+     when lower(emp_name)=lower(reverse(emp_name)) then 'palindrome'
+     else 'Not Palindrome'
+end as palindrome_status
+from employee;
+
+-- Q70 : 
+select emp_name,emp_company,concat (emp_company,'_company') from employee;
+
+-- 	Q71 waq to find sqrroot of number
+select sqrt(25);
+select sqrt(49);
+-- 	Q72 waq to find ceiling value of number
+select ceiling(23.23);
+
+-- 	Q73 waq to find floor value of number
+select floor(3.2333);
+
+-- 	Q74 waq to print cos teta value of number
+select cos(90);
+
+-- 	Q75 waq to print sin teta value of number
+SELECT SIN(90);
+
+-- 	Q76 waq to print tan teta value of number
+select tan(90);
+
+
+-- 	Q77 waq to print cos teta value of number
+select acos(1);
+select acos(0.2);
+-- acos , asin, atan range 0 to 1
+
+-- 	Q78 waq to print sin teta value of number
+SELECT aSIN(0.9);
+
+-- 	Q79 waq to print tan teta value of number
+select atan(0.23);
+
+-- 	Q80 waq to find power of given number
+select power(3,2);
+select power(3, 3);
+
+-- 	Q81 waq to find log2 value  of given number
+select log2(34);
+
+-- 	Q82 waq to find log10 value  of given number
+select log10(34);
+
+-- 	Q83 waq to print pi value
+select pi();
+
+-- 	Q84 waq  to print a random number
+select rand();
+
+--  waq  to print square of number  ( not exist in recent server)
+
+-- 	Q85 waq  to print current date and time
+select current_timestamp();
+
+-- 	Q86 waq  to print current date
+select date(current_timestamp());
+
+-- 	Q87 waq  to print date from the dob of employee
+select day(emp_dob) from employee1;
+
+-- 	Q88  waq  to print day name from the dob of employee
+select dayname(emp_dob) from employee1;
+
+-- 	Q89  waq  to print month from the dob of employee
+select month(emp_dob) from employee1;
+
+-- 	Q90  waq  to print monthname from the dob of employee
+select monthname(emp_dob) from employee1;
+
+-- 	Q91  waq  to print year from the dob of employee
+select year(emp_dob) from employee1;
+
+-- 	Q92  waq  to print weeknumber from the dob of employee
+select yearweek(emp_dob) from employee1;
