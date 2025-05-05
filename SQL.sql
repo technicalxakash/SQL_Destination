@@ -660,3 +660,56 @@ select year(emp_dob) from employee1;
 
 -- 	Q92  waq  to print weeknumber from the dob of employee
 select yearweek(emp_dob) from employee1;
+
+
+
+create table product(
+prid int ,
+pname varchar(50),
+availability varchar(50)
+);
+
+INSERT INTO product (prid, pname, availability) VALUES
+(1, 'Laptop', 'In Stock'),
+(2, 'Smartphone', 'Out of Stock'),
+(3, 'Tablet', 'In Stock'),
+(4, 'Headphones', 'Limited Stock'),
+(5, 'Smartwatch', 'In Stock');
+
+UPDATE product SET availability = '50' WHERE prid = 1;
+UPDATE product SET availability = '60' WHERE prid = 2;
+UPDATE product SET availability = '70' WHERE prid = 3;
+UPDATE product SET availability = '80' WHERE prid = 4;
+UPDATE product SET availability = '90' WHERE prid = 5;
+
+
+select * from product;
+
+DELIMITER $$
+
+CREATE TRIGGER update_availability_after_purchase
+AFTER INSERT ON purchase
+FOR EACH ROW
+BEGIN
+    UPDATE product
+    SET availability = availability - NEW.quantity
+    WHERE prid = NEW.prid;
+END$$
+
+DELIMITER ;
+
+
+create table purchase(
+pid int,
+cid int,
+cname varchar(50),
+prid int ,
+pname varchar(50),
+quantity int
+);
+
+select * from purchase;
+
+
+INSERT INTO purchase (pid, cid, cname, prid, pname, quantity)
+VALUES (101, 1, 'Alice', 1, 'Laptop', 2);
