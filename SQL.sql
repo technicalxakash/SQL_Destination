@@ -713,3 +713,47 @@ select * from purchase;
 
 INSERT INTO purchase (pid, cid, cname, prid, pname, quantity)
 VALUES (101, 1, 'Alice', 1, 'Laptop', 2);
+
+
+
+create database akashHome;
+
+use akashHome;
+
+create table employee(
+
+empid int,
+empname varchar(300),
+empdid int,
+empaddr varchar(300),
+empphone int
+
+);
+select * from employee;
+
+alter table employee add column location varchar(300);
+
+alter table employee add column city varchar(100) after location;
+
+alter table employee add column empsalary varchar(100) after empdid;
+
+
+alter table employee rename column empid to emp_empid ;
+
+describe employee;
+
+alter table employee add column emp_gender varchar(100);
+
+alter table employee add column emp_parents varchar(100) after empaddr;
+
+alter table employee rename column city to emp_city;
+
+alter table employee modify  emp_empid varchar(400) primary key;
+
+alter table employee modify  empname varchar(400) not null;
+
+alter table employee add column emp_pincode int after empsalary;
+
+alter table employee rename column empaddr to emp_addr;
+
+alter table employee modify column emp_addr varchar (500);
