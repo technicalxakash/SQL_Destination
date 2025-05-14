@@ -757,3 +757,85 @@ alter table employee add column emp_pincode int after empsalary;
 alter table employee rename column empaddr to emp_addr;
 
 alter table employee modify column emp_addr varchar (500);
+
+
+alter table employee modify column empdid int not null unique;
+
+alter table employee drop column emp_parents;
+alter table employee drop column location;
+alter table employee drop column empdid;
+alter table employee modify column empphone bigint;
+alter table employee add column emp_did bigint after empname;
+
+truncate employee;
+alter table employee modify column empdid int not null ;
+describe employee;
+
+alter table employee rename column emp_empid to emp_id;
+
+insert into employee(emp_id,empname,emp_did,empsalary,emp_pincode,emp_addr,empphone,emp_city,emp_gender)values(101,"akash",1001,50000,560060,"#17,4th cross",6361770988,"banglore","male");
+
+INSERT INTO employee(emp_id, empname, emp_did, empsalary, emp_pincode, emp_addr, empphone, emp_city, emp_gender) VALUES
+
+(102, "megha", 1002, 52000, 560061, "#12, 2nd main", 7896541230, "mysore", "female"),
+(103, "ravi", 1003, 48000, 560062, "#23, 1st street", 9876543210, "hubli", "male"),
+(104, "sneha", 1001, 60000, 560063, "#45, park lane", 9123456789, "mangalore", "female"),
+(105, "arun", 1004, 47000, 560064, "#56, new layout", 9988776655, "shimoga", "male"),
+(106, "priya", 1002, 55000, 560065, "#33, gandhi nagar", 8123456709, "tumkur", "female"),
+(107, "rahul", 1003, 53000, 560066, "#88, 5th block", 9012345678, "belgaum", "male"),
+(108, "divya", 1001, 61000, 560067, "#66, lake view", 7001234567, "hassan", "female"),
+(109, "sachin", 1004, 49000, 560068, "#11, MG road", 6009876543, "davanagere", "male"),
+(110, "anita", 1002, 58000, 560069, "#99, temple street", 8800123456, "chikmagalur", "female"),
+(111, "vijay", 1003, 50000, 560070, "#77, market road", 9600112233, "udupi", "male");
+
+select * from employee;
+
+alter table employee add column emp_ggg varchar(20) after emp_phone;
+
+alter table employee drop column emp_ggg;
+
+select * from employee where emp_id=101;
+
+use akashhome;
+
+select * from employee where emp_gender="male";
+
+select empname from employee ; 
+
+select empname,emp_did,empsalary,empphone from employee ; 
+
+select * from employee where empsalary>60000;
+
+select * from employee where empsalary<50000;
+
+select * from employee where emp_city="mysore" or emp_city="banglore";
+
+select * from employee where emp_city!="mysore" and emp_city!="banglore";
+
+
+select * from employee where empname like "%a" or "%e" or "%i" or "%o" or "%u";
+
+select * from employee where empname like "s%";
+
+
+select * from employee where empsalary between 50000 and 60000;
+
+
+alter table employee add column emp_dob varchar(50) after emp_gender;
+set sql_safe_updates=false;
+update employee set emp_dob = '1991-01-11' where emp_id=101;
+update employee set emp_dob='1991-02-13' where  emp_id=102;
+UPDATE employee SET emp_dob = '1993-03-13' WHERE emp_id = 103;
+UPDATE employee SET emp_dob = '1994-04-14' WHERE emp_id = 104;
+UPDATE employee SET emp_dob = '1995-05-15' WHERE emp_id = 105;
+UPDATE employee SET emp_dob = '1996-06-16' WHERE emp_id = 106;
+UPDATE employee SET emp_dob = '1997-07-17' WHERE emp_id = 107;
+UPDATE employee SET emp_dob = '1998-08-18' WHERE emp_id = 108;
+UPDATE employee SET emp_dob = '1999-09-19' WHERE emp_id = 109;
+UPDATE employee SET emp_dob = '2000-10-20' WHERE emp_id = 110;
+UPDATE employee SET emp_dob = '2001-11-21' WHERE emp_id = 111;
+
+update employee set empname="sahana" where emp_id = 103;
+
+
+update employee set empname="sahana" where empnname="ravi";
