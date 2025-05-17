@@ -839,3 +839,26 @@ update employee set empname="sahana" where emp_id = 103;
 
 
 update employee set empname="sahana" where empnname="ravi";
+
+use akashhome;
+
+select * from employee where emp_gender != 'male';
+
+select * from employee where empname like '%a';
+
+select * from employee where emp_gender like 'male';
+
+set sql_safe_updates=false;
+
+update employee set emp_city='malaysia' where emp_id=105;
+
+
+update employee set empsalary=empsalary+(empsalary*0.9);
+
+
+update employee set emp_city='bombay' where emp_id=102;
+
+
+update employee set empsalary =empsalary+(empsalary*2.7) where emp_gender='male';
+
+drop column empsalary;
