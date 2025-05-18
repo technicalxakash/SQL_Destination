@@ -943,3 +943,95 @@ select * from employee order by emp_salary desc limit 1 offset 1;
 
 
 select max(emp_salary) as second_highest from employee where emp_salary  <(select max(emp_salary) as emp_salary from employee);
+
+
+CREATE PROCEDURE  `salary_companyy`(salary bigint,comapny varchar(100))
+BEGIN
+select * from employee where emp_salary=emp_salary+salary and emp_cmpp=comapny;
+END$$
+
+USE `akashhome`;
+DROP procedure IF EXISTS `employee`;
+
+DELIMITER $$
+USE `akashhome`$$
+CREATE PROCEDURE `employee` (city varchar(100))
+BEGIN
+select * from employee where emp_city=city;
+END$$
+
+DELIMITER ;
+call employee("banglore");
+
+alter table employee add column emp_cmp varchar(200);
+
+update employee set emp_cmp="tcs" where emp_id=101;
+update employee set emp_cmp="amazon" where emp_id=102;
+update employee set emp_cmp="yahoo" where emp_id=103;
+update employee set emp_cmp="audi" where emp_id=104;
+update employee set emp_cmp="tcs" where emp_id=105;
+update employee set emp_cmp="google" where emp_id=106;
+update employee set emp_cmp="max services" where emp_id=107;
+update employee set emp_cmp="trisys" where emp_id=108;
+update employee set emp_cmp="google" where emp_id=109;
+update employee set emp_cmp="ibm" where emp_id=110;
+update employee set emp_cmp="ibm" where emp_id=111;
+
+USE `akashhome`;
+DROP procedure IF EXISTS `salary_company`;
+
+DELIMITER $$
+USE `akashhome`$$
+CREATE PROCEDURE `salary_company` (salary bigint,comapny varchar(100))
+BEGIN
+select * from employee where emp_salary=salary and emp_cmp=comapny;
+END$$
+
+DELIMITER ;
+call salary_company(100000,"tcs");
+
+alter table employee rename column emp_cmmpp to emp_company;
+
+
+USE `akashhome`;
+DROP procedure IF EXISTS `salary_companyy`;
+
+DELIMITER $$
+USE `akashhome`$$
+CREATE PROCEDURE  `salary_companyy`(salary bigint,comapny varchar(100))
+BEGIN
+select * from employee where emp_salary=emp_salary+salary and emp_cmpp=comapny;
+END$$
+
+DELIMITER ;
+call salary_companyy(109,"tcs");
+
+
+USE `akashhome`;
+DROP procedure IF EXISTS `salaryy_companyy`;
+
+DELIMITER $$
+USE `akashhome`$$
+CREATE PROCEDURE `salaryy_companyy`(salary bigint,comapny varchar(100))
+BEGIN
+select * from employee where emp_salary=emp_salary+(emp_salary+salary) and emp_cmmpp=comapny;
+END$$
+
+DELIMITER ;
+call salaryy_companyy(109,"tcs");
+
+
+USE `akashhome`;
+DROP procedure IF EXISTS `salaryy_CCompanyy`;
+
+DELIMITER $$
+USE `akashhome`$$
+CREATE PROCEDURE salaryy_CCompanyy(salary bigint,comapny varchar(100))
+BEGIN
+update employee set emp_salary=emp_salary+salary where  emp_company=comapny ;
+END$$
+
+DELIMITER ;
+call salaryy_CCompanyy(109,"tcs");
+
+
