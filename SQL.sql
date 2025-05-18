@@ -862,3 +862,84 @@ update employee set emp_city='bombay' where emp_id=102;
 update employee set empsalary =empsalary+(empsalary*2.7) where emp_gender='male';
 
 drop column empsalary;
+
+
+set sql_safe_updates=false;
+
+update employee set emp_city='malaysia' where emp_id=105;
+
+
+update employee set empsalary=empsalary+(empsalary*0.9);
+
+
+update employee set emp_city='bombay' where emp_id=102;
+
+
+update employee set empsalary =empsalary+(empsalary*2.7) where emp_gender='male';
+
+alter table employee drop column empsalary;
+
+alter table employee add column emp_salary bigint after emp_did;
+
+update employee set emp_salary = 100000 where emp_id=101;
+update employee set emp_salary = 200000 where emp_id=102;
+update employee set emp_salary = 250000 where emp_id=103;
+update employee set emp_salary = 190000 where emp_id=104;
+update employee set emp_salary = 180000 where emp_id=105;
+update employee set emp_salary = 300000 where emp_id=106;
+update employee set emp_salary = 400000 where emp_id=107;
+update employee set emp_salary = 230000 where emp_id=108;
+update employee set emp_salary = 150000 where emp_id=109;
+update employee set emp_salary = 130000 where emp_id=110;
+update employee set emp_salary = 170000 where emp_id=111;
+
+select * from employee where empname like '%a';
+
+update employee set emp_salary=emp_salary+(emp_salary*0.1);
+
+update employee set emp_salary=emp_salary-(emp_salary*0.1);
+
+select * from employee where emp_city like 'banglore';
+
+set sql_safe_updates=false;
+
+update employee set emp_salary=100000 where emp_id=101;
+
+
+delete from employee where emp_id=101;
+
+insert into employee(emp_id,empname, emp_did ,emp_salary ,emp_pincode ,emp_addr ,empphone ,emp_city, emp_gender, emp_dob)Values (101,"akash",1001,100000,560060,"#11,1st main",63616740676,"banglore","male","1990-01-12");
+
+update employee set emp_salary=emp_salary-(emp_salary*0.27) where emp_id=102;
+
+select max(emp_salary) as max_salary from employee;
+
+
+select min(emp_salary) as  min_salary from employee;
+
+
+
+select avg(emp_salary) as avg_salary from employee;
+
+select count(emp_gender) as tottal_count from employee;
+
+update employee set emp_gender='male' where emp_id=101;
+
+select sum(emp_salary) as sum_salary from employee;
+
+select * from employee order by emp_salary asc;
+
+select * from employee order by emp_salary desc;
+
+select * from employee order by emp_salary desc limit 1;
+
+select * from employee where emp_salary=(select max(emp_salary) as max_salary from employee);
+
+
+select * from employee where emp_salary=(select min(emp_salary) as min_salary from employee);
+
+
+select * from employee order by emp_salary desc limit 1 offset 1;
+
+
+select max(emp_salary) as second_highest from employee where emp_salary  <(select max(emp_salary) as emp_salary from employee);
