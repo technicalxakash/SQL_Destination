@@ -1035,3 +1035,27 @@ DELIMITER ;
 call salaryy_CCompanyy(109,"tcs");
 
 
+select ascii("A");
+select ascii('a');
+
+
+select upper(empname) from employee;
+
+select lower(empname) from employee;
+
+select length(empname) from employee;
+
+select empname,reverse(empname) from employee;
+
+set sql_safe_updates=false;
+
+update employee set empname='markram' where emp_id=102;
+
+select empname,
+case
+when lower(empname)=lower(reverse(empname)) then 'palindrome' else "not palindrome" end as palindrome_status from employee;
+
+
+select empname,emp_company,concat (emp_company,'_company') from employee;
+
+select emp_did, concat(emp_did,"emp") from employee;
