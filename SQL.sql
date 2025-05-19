@@ -1059,3 +1059,64 @@ when lower(empname)=lower(reverse(empname)) then 'palindrome' else "not palindro
 select empname,emp_company,concat (emp_company,'_company') from employee;
 
 select emp_did, concat(emp_did,"emp") from employee;
+
+
+select empname,
+case
+when lower(empname)=lower(reverse(empname)) then 'palindrome' else "not palindrome" end as palindrome_status from employee;
+
+
+select empname,emp_company,concat (emp_company,'_company') from employee;
+
+select emp_did, concat(emp_did,"emp") from employee;
+
+select empname,
+case
+when lower(empname)=lower(reverse(empname)) then 'palindrome' else 'not palindrome' end as palindrome_status from employee;
+
+select empname ,concat(empname,"_emp") from employee;
+
+select sqrt(25);
+
+select ceiling(23.33);
+select floor(23.33);
+select day(emp_dob) from employee;
+select month(emp_dob) from employee;
+select year(emp_dob) from employee;
+
+select current_timestamp();
+select dayname(emp_dob) from employee;
+
+select date(current_timestamp());
+select time(current_timestamp());
+
+
+
+select empname,
+case
+when lower(empname)=lower(reverse(empname)) then 'palindrome' else "not palindrome" end as palindrome_status from employee;
+
+
+select empname,emp_company,concat (emp_company,'_company') from employee;
+
+select emp_did, concat(emp_did,"emp") from employee;
+
+select empname,
+case
+when lower(empname)=lower(reverse(empname)) then 'palindrome' else 'not palindrome' end as palindrome_status from employee;
+
+select empname ,concat(empname,"_emp") from employee;
+
+select sqrt(25);
+
+select ceiling(23.33);
+select floor(23.33);
+select day(emp_dob) from employee;
+select month(emp_dob) from employee;
+select year(emp_dob) from employee;
+
+select current_timestamp();
+select dayname(emp_dob) from employee;
+
+select date(current_timestamp());
+select time(current_timestamp());
