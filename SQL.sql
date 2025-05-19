@@ -1120,3 +1120,39 @@ select dayname(emp_dob) from employee;
 
 select date(current_timestamp());
 select time(current_timestamp());
+
+
+
+#joins
+
+create database JoinsHome;
+
+use JoinsHome;
+
+
+create table employee(emp_id bigint primary key ,emp_name varchar(100), emp_did bigint not null, emp_address varchar(200));
+select * from employee;
+INSERT INTO employee (emp_id, emp_name, emp_did, emp_address) VALUES 
+(1001, 'Alice Johnson', 10, '123 Maple Street, New York, NY'),
+(1002, 'Bob Smith', 20, '456 Oak Avenue, Los Angeles, CA'),
+(1003, 'Carol Williams', 10, '789 Pine Road, Chicago, IL'),
+(1004, 'David Brown', 30, '321 Birch Blvd, Houston, TX'),
+(1005, 'Eva Davis', 20, '654 Cedar Lane, Phoenix, AZ'),
+(1006, 'akash', 40, '2342 Lane, uk, Akj');
+
+
+create table department(dep_no int primary key,dep_name varchar(100),dep_did  bigint unique);
+
+select * from department;
+
+
+INSERT INTO department (dep_no, dep_name, dep_did) VALUES
+(1, 'Human Resources', 10),
+(2, 'Engineering', 20),
+(3, 'Marketing', 30),
+(4,'Sales',50);
+
+
+1)inner join
+select * from employee inner join department on employee.emp_did = department.dep_did;
+
