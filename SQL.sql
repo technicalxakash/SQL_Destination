@@ -1121,6 +1121,23 @@ select dayname(emp_dob) from employee;
 select date(current_timestamp());
 select time(current_timestamp());
 
+select day(emp_dob) from employee;
+select month(emp_dob) from employee;
+select year(emp_dob) from employee;
+
+select current_timestamp();
+select dayname(emp_dob) from employee;
+
+select date(current_timestamp());
+select time(current_timestamp());
+
+
+select * from employee;
+select current_timestamp();
+select day(current_timestamp());
+select dayname(current_timestamp());
+select monthname(current_timestamp());
+select dayname(emp_dob) from employee where emp_id=101;
 
 
 #joins
@@ -1152,7 +1169,39 @@ INSERT INTO department (dep_no, dep_name, dep_did) VALUES
 (3, 'Marketing', 30),
 (4,'Sales',50);
 
+-- inner join
+select * from employee inner join department on employee.emp_did=department.dep_did;
 
-1)inner join
-select * from employee inner join department on employee.emp_did = department.dep_did;
+-- Equvi join
+select * from employee e , department d where e.emp_did = d.dep_did;
+
+
+-- natural join
+ALTER TABLE department RENAME COLUMN dep_did TO emp_did;
+
+select * from employee natural join department;
+
+
+use joinshome;
+insert into employee(emp_id,emp_name,emp_did,emp_address)values(1009,"suhas",60,"#17 5th manin banglore");
+
+-- outer join
+select * from employee e left join department d on e.emp_did = d.emp_did;
+
+-- right outer join
+select * from employee e right join department d on e.emp_did = d.emp_did;
+
+
+-- full join
+select * from employee e left join department d on e.emp_did = d.emp_did
+union
+select * from employee e right join department d on e.emp_did = d.emp_did;
+
+
+-- cross join
+select * from employee cross join department;
+
+-- cartesian join
+select * from employee,department;
+
 
